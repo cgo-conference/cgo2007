@@ -1,0 +1,322 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" href="../style.css"> 
+
+
+<!-- map Javascript code and key based on CGO 2006 -->
+
+<style>
+  div.poititle {
+    font-weight: bold
+  }
+
+  #maptable {
+    margin: 0em 1em 1em 1em;
+    border-width: 2px;
+  }
+
+  h3 {
+     clear: both;
+  }
+</style>
+
+<script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAALP4PdPEp3QM8yNNi3C6ayRQH3hHKoiAOkptvYeVc2lhAloAukhS6ZtyLT5LE5RWsFj2Hkukaw887BQ" type="text/javascript"></script>
+
+<title>CGO 2007 Local Information</title>
+<base target="_top">
+
+</head>
+
+<body>
+
+
+
+<h2>CGO 2007 Local Information</h2>
+
+<h3>Venue</h3>
+
+<p>
+CGO 2007 will be held at <a
+href="http://www.hotelvalencia.com/san-jose-santana-row-home.php">Hotel
+Valencia Santana Row</a> in <a href="http://sanjose.org">San Jose,
+CA</a>.
+
+
+
+
+  <table id="maptable" border=1 align="top">
+    <tr><td valign="top"> 
+    <div id="map" style="width: 500px; height: 500px"></div>
+   </div>
+   </td>
+   <td valign="top">
+   <div id="sidebar"></div>
+   </td>
+  </tr>
+</table>
+</p>
+
+
+    <script type="text/javascript">
+      function getMarkerPopUpFunc(marker,html){
+        return function() {
+          marker.openInfoWindowHtml(html);
+        }
+      }
+
+      var points = new Array();
+      var categories = new Array("Venue",
+                                 "Airport",
+                                 //"Event",
+                                 "Places");
+      var catnames = new Array("Conference Venue",
+                               "Airports",
+                               //"Conference Events",
+                               "Places");
+
+      // Must have venue, all other keys are optional
+      points.venue = new Object();
+      points.venue["letter"] = "A";
+      points.venue["cat"] = "Venue";
+      points.venue["name"] = "Hotel Valencia";
+      points.venue["loc"] = new GPoint(-121.948586, 37.322052);
+      points.venue["html"] = "<html><body>" +
+                             '<div class="poititle">Conference Venue</div>' +
+                             "Hotel Valencia, <br />Santana Row</br>" +
+                             "</body></html>";
+
+      points.sjc = new Object();
+      points.sjc["letter"] = "B";
+      points.sjc["cat"] = "Airport";
+      points.sjc["name"] = "San Jose Airport";
+      points.sjc["loc"] = new GPoint(-121.927729, 37.368111);
+      points.sjc["html"] = "<html><body>" +
+                             '<div class="poititle">San Jose Airport</div>' +
+                             "(closest to the </br>conference venue)</br>" +
+                             "</body></html>";
+
+      points.sfo = new Object();
+      points.sfo["letter"] = "C";
+      points.sfo["cat"] = "Airport";
+      points.sfo["name"] = "San Francisco Airport";
+      points.sfo["loc"] = new GPoint(-122.384434, 37.617359);
+      points.sfo["html"] = "<html><body>" +
+                             '<div class="poititle">San Francisco Airport</div>' +
+                             "</body></html>";
+
+      points.oak = new Object();
+      points.oak["letter"] = "D";
+      points.oak["cat"] = "Airport";
+      points.oak["name"] = "Oakland Airport";
+      points.oak["loc"] = new GPoint(-122.214489, 37.718726);
+      points.oak["html"] = "<html><body>" +
+                             '<div class="poititle">Oakland Airport</div>' +
+                             "</body></html>";
+
+      points.vf = new Object();
+      points.vf["letter"] = "E";
+      points.vf["cat"] = "Places";
+      points.vf["name"] = "Valley Fair Mall";
+      points.vf["loc"] = new GPoint(-121.946054, 37.324919);
+      points.vf["html"] = "<html><body>" +
+                             '<div class="poititle">Valley Fair Shopping Mall</div>' +
+                             "380 stores, 6 restaurants and</br>" +
+                             "a food court with more dining options</br>" +
+                             "</body></html>";
+
+      points.wmf = new Object();
+      points.wmf["letter"] = "F";
+      points.wmf["cat"] = "Places";
+      points.wmf["name"] = "Winchester Mystery House";
+      points.wmf["loc"] = new GPoint(-121.950313, 37.319015);
+      points.wmf["html"] = "<html><body>" +
+                             '<div class="poititle">Winchester Mystery House</div>' +
+                             "Victorian mansion filled with</br>" +
+                             "many unexplained oddities</br>" +
+                             "</body></html>";
+
+
+
+      points.tech = new Object();
+      points.tech["letter"] = "G";
+      points.tech["cat"] = "Places";
+      points.tech["name"] = "The Tech";
+      points.tech["loc"] = new GPoint(-121.890113, 37.331539);
+      points.tech["html"] = "<html><body>" +
+                             '<div class="poititle">The Tech Museum of Innovation</div>' +
+                             "a hands-on technology and science museum</br>" +
+                             "for people of all ages and backgrounds</br>" +
+                             "</body></html>";
+
+      points.egypt = new Object();
+      points.egypt["letter"] = "H";
+      points.egypt["cat"] = "Places";
+      points.egypt["name"] = "Egyptian Museum";
+      points.egypt["loc"] = new GPoint(-121.923137, 37.334269);
+      points.egypt["html"] = "<html><body>" +
+                             '<div class="poititle">The Rosicrucian Egyptian Museum</div>' +
+                             "the largest collection of Egyptian artifacts</br>" +
+                             "on exhibit in the western United States</br>" +
+                             "</body></html>";
+
+
+      points.art = new Object();
+      points.art["letter"] = "I";
+      points.art["cat"] = "Places";
+      points.art["name"] = "San Jose Museum of Art";
+      points.art["loc"] = new GPoint(-121.890478, 37.333621);
+      points.art["html"] = "<html><body>" +
+                             '<div class="poititle">San Jose Museum of Art</div>' +
+                             "a permanent collection of 1,400 twentieth and</br>" +
+                             "twenty-first century artworks</br>" +
+                             "</body></html>";
+
+      points.goog = new Object();
+      points.goog["letter"] = "J";
+      points.goog["cat"] = "Venue";
+      points.goog["name"] = "Google";
+      //points.goog["loc"] = new GPoint(-122.084336, 37.422186);
+      //points.goog["loc"] = new GPoint(-122.084, 37.421);
+      points.goog["loc"] = new GPoint(-122.085, 37.4211);
+      points.goog["html"] = "<html><body>" +
+                             '<div class="poititle">Google</div>' +
+                             "</body></html>";
+
+
+    var map = new GMap(document.getElementById("map"));
+    map.addControl(new GLargeMapControl());
+    map.addControl(new GMapTypeControl());
+
+    map.centerAndZoom(points.venue.loc, 3);
+ 
+    var firstloc = 1;
+    for (var point in points) {
+      var icon = new GIcon();
+      if(points[point].letter <= 'J') {
+        icon.image = "http://www.google.com/intl/en_ALL/mapfiles/marker" + points[point].letter + ".png";
+        icon.printImage = "http://www.google.com/intl/en_ALL/mapfiles/marker" + points[point].letter + "ie.gif";
+        icon.mozPrintImage = "http://www.google.com/intl/en_ALL/mapfiles/marker" + points[point].letter + "ff.gif";
+      } else {
+        icon.image = "http://www.google.com/intl/en_ALL/mapfiles/marker.png";
+        icon.printImage = "http://www.google.com/intl/en_ALL/mapfiles/markerie.gif";
+        icon.mozPrintImage = "http://www.google.com/intl/en_ALL/mapfiles/markerff.gif";
+      }
+      icon.shadow = "http://www.google.com/intl/en_ALL/mapfiles/shadow50.png";
+      icon.printShadow = "http://www.google.com/intl/en_ALL/mapfiles/dithshadow.gif";
+      icon.iconSize = new GSize(20,34);
+      icon.shadowSize = new GSize(37,34);
+      icon.iconAnchor = new GPoint(10,34);
+      icon.infoWindowAnchor = new GPoint(15,10);
+      var marker = new GMarker(points[point].loc,icon);
+      var html = points[point].html;
+      var popupFunc = getMarkerPopUpFunc(marker,html);
+      map.addOverlay(marker);
+
+      points[point].marker = marker;
+      points[point].popup = popupFunc;
+      GEvent.addListener(marker, 'click', popupFunc);
+      if(firstloc) {
+        firstloc = 0;
+        marker.openInfoWindowHtml(html);
+      }
+    }
+
+
+    // Create a side bar of locations
+    var sidebar_html = "";
+    for (var cat in categories) {
+      sidebar_html += "<b>" + catnames[cat] + "</b><br />" ;
+      for (var point in points) {
+        if((points[point].name) && (points[point].cat == categories[cat])) {
+	  if(points[point].letter <= 'J')  {
+            sidebar_html += '<img height="17" width="10" src="http://www.google.com/intl/en_ALL/mapfiles/marker' + points[point].letter + '.png" />';
+          } else {
+            sidebar_html += '<img height="17" width="10" src="http://www.google.com/intl/en_ALL/mapfiles/marker.png" />';
+          }
+            sidebar_html +=    '<a '+
+                          'href="javascript:;"' +
+                          // Why doesn't the following work in href?
+                          'onclick=javascript:points["' + point + '"].popup()' +
+                          '>' +
+                           points[point].name +
+                           '</a><br />';
+        }
+      }
+    }
+
+    document.getElementById("sidebar").innerHTML = sidebar_html;
+    </script>
+
+
+<h3>Arrival information</h3>
+
+<p>
+<a
+href="http://www.hotelvalencia.com/san-jose-santana-row-directions-maps.php">Click
+here</a> for driving directions to the hotel.
+
+If you are not from the Bay Area, you will probably arrive to one of
+the three local airports.  The <a href="http://www.sjc.org">San Jose
+airport</a> is the closest one.  The other options are <a
+href="http://www.flysfo.com"> the San Franciso airport</a> and <a
+href="http://www.flyoakland.com">the Oakland airport</a>.</p>
+
+<p>If you are not renting a car, you can either use a shared van from
+the airport or get to the hotel by public transit.  You can find out
+the public transit info from the <a
+href="http://www.transitinfo.org/tripplanner/index.asp">511 Trip
+Planner</a> web site.  Enter, the airport name as the orgin
+("SFO, San Francisco", "OAK, Oakland" or "SJC, San Jose") and
+"Santana Row, San Jose" as the destination.</p>
+
+<p>If you are driving from the Bay Area and are not familiar with
+Santana Row, <a href="http://www.santanarow.com/flash/map.html">click
+here</a> for a map of Santana Row that shows parking.</a>
+
+
+<h3>Things to do</h3>
+
+<ul>
+
+<li>The hotel is located in <a href="http://www.santanarow.com">Santana
+Row</a> with many restaurants and stores.
+
+<li>On the other side of Stevens Creek Blvd, you can find more
+restaurants in the <a href="http://westfield.com/valleyfair">Valley
+Fair shopping mall</a>.
+
+<li><a href="http://www.winchestermysteryhouse.com">Winchester Mystery
+House</a> (walking distance from the hotel).
+
+<li><a href="http://www.thetech.org">The Tech Museum of Innovation</a>
+
+
+<li><a href="http://www.egyptianmuseum.org">The Rosicrucian Egyptian
+Museum</a>
+
+<li><a href="http://www.sjmusart.org">San Jose Museum of Art</a>
+
+</ul>
+
+
+
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-238213-4";
+urchinTracker();
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

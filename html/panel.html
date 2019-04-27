@@ -1,0 +1,1077 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" href="http://www.cgo.org/cgo2007/style.css"> 
+
+<title>CGO-2007 Panel</title>
+</head>
+
+<body>
+
+<h2>Are new languages necessary for multicore?</h2>
+ 
+<h3>Panelist Bios and Position Statements</h3>
+
+
+<br/>
+
+<center><table border="4">
+
+<th>Panelist</th>
+<th width="0"></th>
+<th>Bio</th>
+<th>Position Statement</th>
+
+<tr>
+
+ <td>David August</td>
+
+ <td></td>
+
+ <td><a href="http://www.princeton.edu/~august">Prof. David August</a>
+is an Associate Professor in the Department of Computer Science at
+Princeton University.  His research interests lie in computer
+architecture and back-end compilation.  At Princeton, he directs the
+<a href="http://liberty.princeton.edu">Liberty Research Group</a>.
+The Liberty Research Group is studying next generation architectures,
+code analyses, and code transformations to enhance performance,
+reliability, and security.  To support this work and to advance
+computer architecture research in general, the group develops powerful
+open- source compiler and modeling tools.  David's work has been
+recognized by an NSF CAREER Award, an Emerson Electric Company -
+E. Lawrence Keyes '51 Award, an IBM Faculty Partnership Award, several
+best paper awards, and The Chronicle of Higher Education's annual list
+of "New Ph.D.'s to Watch".  David earned his Ph.D. in Electrical
+Engineering from the University of Illinois at Urbana- Champaign in
+2000 while working as a member of the IMPACT research group.</td>
+
+ <td><a href="panel.html#August">David August's Position Statement</a></td>
+
+</tr>
+
+<tr>
+
+ <td>Preston Briggs</td>
+
+ <td></td>
+
+ <td>Preston Briggs is a Fellow at AMD.
+He received a PhD from Rice University in 1992.
+Since then, he has worked in industry (Tera, Cray, and AMD),
+focusing on compiler optimization and application performance
+for parallel computers. He willingly confesses a huge bias
+towards shared-memory systems.</td>
+
+ <td><a href="panel.html#Briggs">Preston Briggs' Position Statement</a></td>
+
+</tr>
+
+<tr>
+
+ <td>David Callahan</td>
+ <td></td>
+
+ <td>David Callahan is a Distinguished Engineer at Microsoft where he
+ works on concurrency related issues within the Parallel Computing
+ Platform Team, a part of the Visual Studio suite of developer
+ tools. Prior to Microsoft, he worked for many years at Cray Inc. and
+ Tera Computer Company developing language extensions, compilers,
+ runtime support and tools for developing scalable parallel programs
+ for high-performance computing.  He was a Co-PI on the first two
+ phases of the Cray/DARPA HPCS project called Cascade and contributed
+ to the early designs of the Chapel programming language. He is a
+ graduate of Rice University and his interests include optimizations
+ compilers, parallel languages and runtime support, parallel
+ algorithms, and hardware architecture. He is a member of the
+ ACM.</td>
+
+ <td><a href="panel.html#Callahan">David Callahan's Position Statement</a></td>
+
+</tr>
+
+<tr>
+
+ <td>David Chase</td>
+ <td></td>
+
+ <td>
+
+<p>David Chase is a Senior Staff Engineer at Sun Microsystems, where
+he has been working on the Fortress Programming Language since 2003.
+Dr. Chase's interests include the interaction of compiler
+optimizations with runtime systems, and language design and
+implementation in general.
+
+Before returning to Sun in 2003, he worked for a variety of
+startups doing work related to language transformation, design and
+implementation, Sun Microsystems, and Olivetti Research.
+
+Dr. Chase received a BSEE from Rice University in 1982, and his
+Ph.D.  in 1988 at Rice University.</p>
+
+</td>
+
+ <td><a href="panel.html#Chase">David Chase's Position Statement</a></td>
+
+</tr>
+
+<tr>
+
+ <td>Edward A. Lee</td>
+ <td></td>
+
+ <td>Edward A. Lee is the Robert S. Pepper Distinguished Professor and
+Chair of the Electrical Engineering and Computer Sciences (EECS)
+department at U.C.  Berkeley. His research interests center on design,
+modeling, and simulation of embedded, real-time computational
+systems. He is a director of Chess, the Berkeley Center for Hybrid and
+Embedded Software Systems, and is the director of the Berkeley Ptolemy
+project. He is co-author of five books and numerous papers. He has led
+the development of several influential open-source software packages,
+including Ptolemy, Ptolemy II, HyVisual, and VisualSense. His
+bachelors degree (B.S.) is from Yale University (1979), his masters
+(S.M.)  from MIT (1981), and his Ph.D.  from U. C. Berkeley
+(1986). From 1979 to 1982 he was a member of technical staff at Bell
+Telephone Laboratories in Holmdel, New Jersey, in the Advanced Data
+Communications Laboratory. He is a co-founder of BDTI, Inc., where he
+is currently a Senior Technical Advisor, and has consulted for a
+number of other companies. He is a Fellow of the IEEE, was an NSF
+Presidential Young Investigator, and won the 1997 Frederick Emmons
+Terman Award for Engineering Education.</td>
+
+ <td><a href="panel.html#Lee">Edward A.Lee's Position Statement</a></td>
+
+</tr>
+</table></center>
+
+<br/>
+
+<h2>Position Statements</h2>
+
+<br><br>
+<a name="August">
+<hr width=95% size=2 align=left noshade>
+<h3>Position Statement: David August</h3>
+<hr width=95% size=1 align=left noshade>
+
+<p>The value of a programming language is only in its ability to
+reduce the effort a programmer must expend to express an algorithm to
+perform a given task.  This explains the historic trends in
+programming language usage - migration from assembly (C), the move to
+object oriented-languages (Java, C++), and the expanding use of
+scripting languages (Perl, Python).  For programmers participating in
+these trends, the ease of programming was worth much more than any
+loss in performance.  Only when performance is at a premium and an
+essential part of the task's definition do we see programmers counter
+this trend, and then only as little as possible, such as in key
+rendering loops in a video game.  Any new language for multicore that
+doesn't simplify the programmer's task compared to existing sequential
+programming languages will likely be relegated to similar dark corners
+even if its use delivers a performance advantage.  Unfortunately, as
+described here, new languages for multicore may increase the software
+development burden, and may do so without a convincing performance
+advantage, if any, over a much less burdensome approach described
+later in this statement.</p>
+
+<h4>Punishment by Multicore Language</h4>
+
+<p>In order for multicore languages to be successful, they must reduce
+the programmer's burden.  Unfortunately, all languages for multicore
+are likely to increase software development burden in at least a few
+ways.  First, a new language of any type requires training, a time
+consuming and expensive process.  Second, legacy codes that are to
+benefit will need to be rewritten, also a time consuming and expensive
+process.  Third, multicore languages will likely require programmers
+to express their code in a parallel form, a more difficult task than
+expressing code in a sequential form.  Fourth, parallel forms may be
+more difficult to reason about, resulting in more programming errors.
+Fifth, compounding this correctness problem will be the increased
+effort necessary for debugging and verifying parallel codes.</p>
+
+<p>Well-designed multicore languages can address some of these issues
+by being deterministic and by allowing the decomposition of the
+problem in a natural manner for the domain.  Unfortunately, by
+supporting a more natural decomposition of the problem, these
+languages will be special purpose (such as for creating
+hardware/simulators or for encoding signal processing applications) as
+different problems decompose in very different ways.  When compared to
+general purpose languages, these languages tend to to have higher
+tool, support, training, and legacy code conversion costs, placing a
+different set of the burdens on software developers.</p>
+
+<p>Companies make money by alleviating customer pain, not by creating
+it because they can't solve their own problems.  Now that architects
+are unable to sustain the exponential increase in performance with
+hardware alone, the next step should be to explore compiler and
+runtime solutions jointly with hardware, not to simply push the
+problem to the language level and unduly burden the programmer.
+(Later in this statement, I will address the motivation behind this
+language- level reaction, and why this reaction is not rational.)
+Some would argue that x86 prevails solely for the reason that
+switching to another ISA involves customer effort.  Yet, in the
+proposed new-language migration path to multicore, we see little
+respect for this key market insight.  The market always has the last
+word.</p>
+
+
+<h4>New Multicore Languages Aren't Sufficient, May Not Even Be Necessary</h4>
+
+<p>Even assuming programmers are willing to accept the burden thrust
+upon them, there is evidence to suggest that new multicore languages
+won't actually solve the problem without help from automatic
+parallelization.</p>
+
+<p>When writing code in a multicore language, some algorithms will
+have programs for which performance scales with input set size.  This
+is good news for multicore if we expect a doubling of cores every
+Moore's Law generation.  These "embarrassingly parallel" applications
+are easily expressed with existing methods.  Unfortunately, many
+algorithms may not have programmatic expressions which scale so well.
+Amdahl's law says that the performance of these multicore codes will
+be tied to the performance of their "sequential portions".</p>
+
+<p>A "sequential portion" is really just another name for code
+sections not expressible in a parallel fashion by the programmer.
+Note that this does not mean that these codes cannot be parallelized,
+just that they cannot be readily expressed in a parallel manner.
+Advances in languages may reduce the amount of "sequential portions"
+in codes, but almost surely at the cost of programmer effort.
+Consider the disaster that would have resulted if programmers were
+required to play a part in ILP extraction (dealing with
+target-specific details, with the fine-grained management of code, and
+with the distraction from the task at hand).  This is what
+parallelizing "sequential portions" may demand of the programmer
+(dealing with specific partitionings and mappings to cores, with
+orchestrating speculation, and with managing more parallelism than is
+cognitively natural).  We have found that the parallelization of
+"sequential portions" fits the ILP analogy in another way, these
+"sequential portions" are often easily parallelized by existing and
+recently developed automatic parallelization methods.</p>
+
+<p>Amdahl's law means that the success of multicore languages is
+dependent upon the success of technology to automatically parallelize
+sequential codes.  If new multicore languages aren't sufficient, maybe
+they aren't even necessary.  If automatic parallelization is necessary
+for multicore success, maybe it is also sufficient.</p>
+
+
+<h4>The Solution</h4>
+
+<p>If we could build devices which continued the trend of uniprocessor
+performance but not the power consumption trend, we should.  We might
+put more than one of these devices on a chip, but we should certainly
+start with these devices.  We should do it for the sake of sequential
+codes, and we should do it for the sake of those essential "sequential
+portions".  (It's all about Amdahl's law.)  As it turns out, we can do
+this, and we can expect this device to continue the performance trends
+we have had for decades on ordinary sequential codes, such as SPEC C
+Int, for at least a few more Moore's law generations.  As it turns
+out, this device is multicore, but it isn't any multicore and it isn't
+just multicore.  It is multicore designed to support compiler and
+runtime thread extraction, and it includes the compiler and runtime
+optimizer itself.  Let's call this architecture ANARCH, to highlight
+the fact that computer architecture, now more than ever, is more than
+just hardware; ANARCH is AN ARCHitecture consisting of A Novel
+Aggregate of Runtime, Compiler, and Hardware systems to enable
+automatic parallelization unlike anything seen before.  ANARCH
+requires nothing that hasn't already been conceived and measured, and
+current measurements show that ANARCH is already able to continue the
+uniprocessor performance for at least a few more Moore's law
+generations.</p>
+
+<p>ANARCH's hardware should start with a few key features.  First, it
+should provide support for compiler controlled speculation and
+recovery.  This support should allow memory versioning, transactional
+memory will support this, but transactional memory is not necessary.
+This speculation support allows the automatic parallelization in the
+compiler and runtime optimizer to perform fairly dramatic TLP
+extraction without non- speculative proofs of correctness.  Second, it
+should support high-frequency streaming communication [MICRO 2006].
+This is essential to support the kinds of thread extraction techniques
+necessary to parallelize sequential programs and sections in ordinary
+C codes.  Finally, a dynamically adjusting heterogeneous core
+technique, like Core Fusion by Jos&#233; Mart&#237;nez's group at
+Cornell, adds balance and efficiency to the system.</p>
+
+<p>ANARCHs compiler and runtime optimizer should start with a few key
+optimizations.  The compiler and runtime optimizer should have the
+latest multithreading scheduling and partitioning techniques,
+Decoupled Software Pipelining (DSWP) [MICRO 2005] and Global MT
+Scheduling to name two.  To this, add multithreaded compiler
+controlled speculation techniques such as MT Memoization, MT
+Speculative Precomputation, and Speculative DSWP.  Augment these
+optimizations with a decade's worth of ILP optimization techniques,
+retargeted to TLP.  Empower the system with the latest memory
+analysis, dynamic recompilation, and dynamic memory dependence
+monitoring.  Finally, add the parallelization techniques of the past.
+While these technique are more applicable to scientific codes, many of
+them can be generalized with help from the above mentioned hardware
+and optimizer elements.</p>
+
+<p>We have experience with a subset of ANARCH.  Using validated
+models, we have seen its potential on running SPEC C Int and similar
+sequential codes.  We conservatively project that ANARCH will yield a
+6 to 100 thread multiplier on the number of threads provided to it
+within two years.  (Each thread of a parallel program can be optimized
+in a similar manner.)  This description of ANARCH is only just a
+beginning.  New techniques, continually under development, will enable
+ANARCH to continue the historic uniprocessor performance trend for
+ordinary sequential codes beyond a few Moore's law generations.  (I
+assert that automatic parallelization technique development will
+become part of the backbone computer architecture.)  Regardless of
+future developments, ANARCH will respond differently to different
+programs.  This may change software development as developers try to
+get the most out of ANARCH, but it does not require new languages for
+multicore.</p>
+
+
+<h4>ANARCH Will Change Software Development</h4>
+
+<p>With experience, the users of any tool learn how best to use that
+tool.  As a tool, ANARCH is no different.  While ANARCH will benefit
+all codes, some will benefit more.  Those who want their code to
+benefit more will do things to make it so.  Let's anticipate these
+changes by examining the fundamental properties of ANARCH.</p>
+
+<p>Programmers know that on any system, certain algorithms do better
+than others.  With ANARCH, the algorithms which do better may be
+different than before.  Intuitively, given what is inside the ANARCH
+black box, better algorithms will be more "parallel" in nature.
+Fortunately, we can express these "parallel" algorithms sequentially,
+avoiding all the problems described above for parallel or new
+multicore languages.  With ANARCH, the system creates the parallel
+expression, handles communication, and guarantees correctness
+automatically and by design (assuming a correct sequential
+expression).  This approach has migration, learning, debugging,
+understanding, determinism advantages.  Debugging this sequential
+expression of a parallel algorithm is no different than debugging
+sequential codes - it's deterministic and fully ordered.  This method
+also embraces legacy code and a smoother migration path for
+developers.</p>
+
+<p>Since sequential code defines a single outcome for a given input,
+ANARCH is unable to create code with alternate correct outcomes for
+that same input.  For example, while any sending order for
+well-formed, sequentially numbered, TCP packets is correct, ANARCH is
+forced to reorder these packets before sending even if they are ready
+to go early.  ANARCH must respect the total order on all I/O, unless
+optional annotations which relax these constraints allow it to create
+even more parallelism automatically.  Programmers will tend to remove
+these artificial sequential constraints by changing the code or using
+annotations, whichever is more natural.  The examples we find are
+truly mundane.</p>
+
+<p>Like any aggressive optimization system, ANARCH does better when
+the programmer doesn't try to be clever.  Custom allocators and
+certain types of memoization are much like manual inlining and
+unrolling - over time the tools do a much better job than the
+programmer at this level of optimization.  Programmers should make
+their codes simpler to understand for themselves and for other
+programmers.  In doing this, they will also make the code easier for
+ANARCH to understand, leading to higher performance.</p>
+
+
+<h4>Final Word</h4>
+
+<p>Vocal proponents of new multicore languages often cite no
+alternative as the reason.  They argue that the multiprocessor
+automatic parallelization limitations that exist today despite decades
+of research indicate that multicore automatic parallelization is not a
+viable solution today.  There are at least two reasons why this is an
+unreasonable leap in logic.  First, multiprocessor automatic
+parallelization is not multicore automatic parallelization.  There are
+opportunities for multicore to move beyond single- chip
+multiprocessors, including ideas only applicable to multicore that
+change the problem.  Second, advances in compiler technologies
+developed in the ILP compilation era change the equation.  These ILP
+optimizations are often more effective at extracting TLP than they
+ever were in extracting ILP.  These techniques include new memory
+analyses, compiler-controlled speculation, and dynamic compilation, to
+name a few.  While we should keep an eye on the past for ideas, we
+should understand that multicore automatic parallelization is a
+completely new challenge, but one with many new possibilities.
+Promoting new multicore languages as the only solution now is an
+admission of defeat for computer architects and compiler writers
+before the game has even started.</p>
+
+<p>The ANARCH approach plays nicely with new languages, with old
+languages, and with thread, MPI, and other libraries.  It addresses
+the Amdahl's law problem that will be seen soon enough with
+language-based approaches.  ANARCH helps those who choose to design
+new multicore languages to do it right.  (All too often, new
+languages, annotations, and architectural features become obsolete
+because of a lack of respect for developing compiler technology.)
+ANARCH provides a zero-cost migration path for legacy codes.  ANARCH
+reduces the burden on software developers expressing parallel
+algorithms.  At the market level, ANARCH is orders of magnitude
+cheaper than any new multicore language approach.  ANARCH is where
+computer architects and compiler writers can have the most impact.
+ANARCH elevates everyone.</p>
+
+<br><br>
+<a name="Briggs">
+<hr width=95% size=2 align=left noshade>
+<h3>Position Statement: Preston Briggs</h3>
+<hr width=95% size=1 align=left noshade>
+
+<h4>Are new languages necessary for multicore?</h4>
+
+<p>No, let's just keep beating our heads against the wall;
+that way, it'll feel so good when we stop.</p>
+
+<p>Or, we could start stopping now.</p>
+
+<p>I'm a big fan of data-parallel programming, for both parallel and
+serial machines. Unfortunately, many people's conception of data
+parallelism seems to be limited to arrays of numbers, which might be
+ok if you do a lot of dense linear algebra. I don't do much linear
+algebra; I write compilers, a classic example of symbolic computation.
+I don't think about solutions to my problems in terms of arrays of
+numbers; instead, I think in terms of sets, maps, and sequences.  I'd
+like to be able to write my programs in these terms and leave their
+implementation to a compiler.</p>
+
+<h4>What's all this have to do with parallel programming?</h4>
+
+<p>Generally, higher level languages offer far more opportunities for
+compiler-generated parallelism.  When I'm writing in, say, Fortran 90
+and wish to add two matrices, the compiler has the opportunity to
+implement the addition in parallel.  Similarly, if I want to find the
+union of two sets, writing in some language that supports set
+operations, I might hope a good compiler would emit code to compute
+the union in parallel. In both cases, I'm able to work at a high level
+and produce a parallel program, without particular knowledge or
+concern for the details of the target machine.</p>
+
+<p>Further, a sufficiently high level language offers the compiler the
+chance to choose data structures to suite the operations specified by
+the programmer. Given a parallel target machine, the choice can be
+slanted towards structures that support a parallel implementation of
+those operations. Of course, automatic selection of data structures is
+a difficult problem, but I believe some restricted parts of the
+problem can be profitably attacked, e.g., representation of
+intermediate values in an expression tree.</p>
+
+<h4>What sort of features would I like?</h4>
+
+<p>I like, very much, applicative data structures.  Side effects
+certainly complicate my life when I write serial programs and the
+complexity is multiplied with parallel programs.  Put another way, the
+benefits of applicative data structures are multiplied when writing
+parallel programs.  A useful language might support both mutable and
+immutable data structures, e.g., CLU.</p>
+
+<p>I like well defined and powerful structuring mechanisms: sets, maps,
+multisets, sequences, tuples. I want to be able to compose them
+arbitrarily, e.g., a set of sequences of characters.</p>
+
+<p>I want a variety of powerful operations: union, intersection, applying
+a map or function to a set, composing two maps, searching a set, etc.
+Since compilers are especially good at optimizing expressions, I want
+the expression language to be as powerful as possible.</p>
+
+<p>Interesting languages in this vein include SETL (Schwartz), CM Lisp
+(Hillis and Steele), and NESL (Blelloch).  Of course, there are many
+others.</p>
+
+<p>I won't claim that this set of features is enough to write all the
+parallel programs we can imagine. Nevertheless, it seems like a great
+start. Furthermore, it seems that a more complete parallel language
+might include my wish list as a subset of its features, perhaps adding
+ways to explicitly express parallelism and synchronization.</p>
+
+<h4>Why not use libraries, e.g., Blitz++?</h4>
+
+<p>We can make a lot of progress with libraries, but they need to be
+carefully designed to avoid precluding parallel implementation. For
+instance, I don't think the C++ STL is particularly good for
+expressing data parallelism. Nevertheless, it's easy to implement a
+template library that supports sets, maps, et al., along with powerful
+operations that can be profitably implemented in parallel. It's more
+difficult to support optimization of complete expression trees,
+perhaps choosing between data structures for intermediate results. A
+compiler has a better chance.</p>
+
+<p>Blitz++ is a counterexample. It's a C++ template library that allows us
+to compactly express high-performance numerical programs, as an
+alternative to, say, Fortran 90. It's able to consider complete
+expression tree and choose appropriate implementations, providing
+performance comparable to Fortran 90. But even this very clever
+approach falls down compared to a compiler which can consider much
+larger chunks of code at once.</p>
+
+<p>For a concrete example, consider adding several elements to a set.  If
+I'm not thinking in an appropriately data-parallel fashion, I might
+write a loop and add the elements one at a time. A compiler that
+understands the behavior of sets and the include operation could
+(should!)  recognize that all the elements could be added in parallel,
+effectively a union operation.</p>
+
+<h4>I/O (why is I/O always at the end?)</h4>
+
+<p>There are few things as frustrating as having a thousand processors
+sitting idle while one thread scans and parses an "input deck".  In
+some ways, this is more of a problem in the design of the file format.
+A well designed format can be inhaled quickly and scanned in parallel
+(I use "scan" as in lexical analysis, though the problem might be even
+simpler). Compiler support, or at least library support, to allow
+parallel conversion of values between their internal format and their
+ASCII representation seems essential.</p>
+
+<h4>Many, many cores</h4>
+
+<p>Finally, I would encourage everyone to think in terms of many, many
+cores.  A programming language (or any related tool) designed for some
+limited number of threads is not going to be useful for long. My
+favorite examples are those graphical performance debugging tools that
+dedicate one line of the display to each thread. How can that approach
+scale to hundreds or thousand of threads? We need tools that summarize
+performance in a useful fashion, that abstract from the details in the
+same way powerful set operations abstract from all the implementation
+detail.</p>
+
+<br><br>
+<a name="Callahan">
+<hr width=95% size=2 align=left noshade>
+<h3>Position Statement: David Callahan</h3>
+<hr width=95% size=1 align=left noshade>
+
+<p>A revolution in computer architecture is upon us that will
+introduce the need for a much larger collection of programmers to deal
+with a set of new design patterns related to parallel computing.
+Efficient implementation of those patterns will demand language and
+tool support and the reconsideration of the architecture of existing
+software frameworks and models of components.</p>
+
+<p>The architectural shift to multi-core processors means that in a
+few years all mainstream computers will be using parallel processing
+and that every application that wants to deliver value will need to be
+parallel. For 16 glorious years, processors improved at 52% per year
+and the software industry used those gains to deliver more and more
+interesting software with greater abstraction and hence developer
+productivity. Now that train seems to have jumped the tracks and
+slowed, perhaps to only 15% per year while transistor budgets continue
+to grow more as they have. Only concurrency will allow us to continue
+to deliver new capability the way we once did and the most likely form
+is gangs of fairly traditional processors sharing most of a memory
+hierarchy.</p>
+
+<p>Concurrency brings a set of new concerns to programming which must
+be captured in a set of new core concepts. This set includes:
+isolation and communication, opportunistically non-sequential program
+composition, and unordered updates of shared state. These concerns
+generate engineering problems as well such as load balancing, locality
+management and potentially power management.  Using concurrency will
+be so hard that we must capture the art into new design patterns that
+will allow many more developers to engineer parallel systems
+effectively.</p>
+
+<p>As new problem domains emerge or as complexity demands greater
+abstraction, successful examples are captured as design patterns which
+allow broader audiences to stand on the shoulders of programming
+giants. As in the past, design patterns that are sufficiently
+ubiquitous will demand language and framework support. We have seen
+this trend consistently followed over time starting with the earliest
+compilers that supported the "subroutine call" (a design pattern that
+has become some so common as to no longer be recognized as a distinct
+pattern) and continued with notions of "object" and method dispatch,
+strong typing, interfaces, generic programming, and access to
+structured data. In future we will see proliferations of domain
+specific languages as tools are built to support model-driven
+development or domains with extreme time-to-market value. For
+concurrent programs a number of candidate design patterns have enough
+momentum to warrant wide-spread support. This includes various notions
+of:</p>
+
+<ul>
+
+<li>"isolated agents" (services) leverage patterns built from "send",
+"receive", "choice" and "join"</li>
+
+<li>the "for all" pattern where some operator is applied to a
+partially-ordered subset of a collection</li>
+
+<li>unordered updates to shared state, the "transaction" pattern</li>
+
+</ul>
+
+<p>Domain-specific patterns can be captured in various ways. Sometimes
+the patterns are domain specific and instead of new languages (PHP,
+Matlab) they are captured in frameworks (J2EE, WPF) and sometimes they
+come together (Ruby on Rails, ActionScript+Flash). Unlike the
+frameworks built for say web-programming or computational biology,
+these are fundamental concepts rather than tools for abstraction. By
+capturing these patterns with actual language bindings we provide the
+usual benefits of enforcing discipline and ensuring interoperability.
+We also gain the ability to build tools for testing and defect
+detection, platforms that automate some of the engineering concerns,
+and reusable frameworks that leverage these patterns.</p>
+
+<br><br>
+<a name="Chase">
+<hr width=95% size=2 align=left noshade>
+<h3>Position Statement: David Chase</h3>
+<hr width=95% size=1 align=left noshade>
+
+<h4>Yes, we need new languages for multicore chips.</h4>
+
+
+<p>
+Multicore chips will provide very many computational threads, but they
+won't all provide the same number of threads, and multiple
+applications running on one chip will variably divide up its pool of
+threads.  To obtain continuing increases in performance, programs will
+need to make flexible, frequent use of very many threads.  To do this
+effectively, we need new programming languages with a greater amount
+of implicit parallelism, well-defined memory models, fewer
+side-effects, garbage-collection, and transactions instead of locks.
+</p>
+
+
+
+<h4>Implicit parallelism</h4>
+
+
+<p>(Most) existing languages lack implicit parallelism.  In these
+languages, if the programmer does not explicitly request creation of a
+thread, no thread is created, and nothing executes in parallel.
+Furthermore, there is little parallelism that can be discovered
+through compiler analysis.  Implicit parallelism allows the runtime to
+create enough parallelism to make effective use of all these cores,
+but it does not require the creation of parallelism where the
+granularity is too small, or when no more parallelism is needed.
+Implicit parallelism allows the use of <a
+href="http://www.lcs.mit.edu/publications/pubs/pdf/MIT-LCS-TM-548.pdf">Cilk-style
+work stealing</a>, which tends to adaptively distribute work in large
+locality-enhancing chunks.</p>
+
+
+<p>Explicit parallelism is mandatory parallelism; if a programmer
+requests a concurrent thread, it must be created and fairly scheduled,
+even if the overhead of creating the thread negates the benefit.
+Explicitly requested threads are typically heavier-weight, with
+associated thread groups, thread identity, thread-specific data, and
+the ability to participate in complex synchronization.  Explicit
+parallelism for performance is also difficult to compose.  In large,
+multicomponent programs, it's not clear where parallelism will best be
+deployed, just as it is not clear where the performance bottlenecks
+are in serial programs until we profile them.  With implicit
+parallelism and a work-stealing runtime, the programmer doesn't need
+to pay as much attention to this problem.</p>
+
+
+<p>The Java<sup>TM</sup> Programming Language is a thread-friendly
+ language; its specification includes definitions of threads and
+ interfaces for manipulating threads, and multithreaded Java programs
+ are common.  Nonetheless, because explicit threads are the only way
+ for programs written in the Java Programming Language to generate
+ parallelism, Java programs may have difficulty taking full advantage
+ of multicore chips in general.  Other languages that regard threads
+ as "<a
+ href="http://www.hpl.hp.com/techreports/2004/HPL-2004-209.html">just
+ a library</a>" will be even more challenged.</p>
+
+
+<p>
+There are some specific (and commercially interesting) problems that
+do adapt well to explicit threading onto a multicore chip.  One
+notable success has been web and application servers running on Sun's
+UltraSPARC<sup>TM</sup> T1 ("Niagara") chips, because server workloads
+partition naturally into a good number of independent coarse-grained
+tasks.  Problems that lack this natural partitioning will not adapt as
+well to multicore without changes to programming languages that allow
+more automated creation and management of parallelism.
+</p>
+
+
+
+<h4>Memory model</h4>
+
+
+
+<p>Most programming languages don't have a memory model, and memory
+ models are tricky.  Without a memory model, we cannot really be sure
+ that a program will function correctly in parallel.  Java was
+ intended to have a memory model from the very beginning, but <a
+ href="http://www.cs.umd.edu/~pugh/java/memoryModel/">actually
+ devising a memory model</a> that struck the right balance between
+ ease of writing concurrent code, ability to optimize ordinary code,
+ and the idioms that appeared in the wild turned out to be a very
+ difficult task, and programmers still write incorrect code
+ accidentally.  The canonical example is the double-checked-locking
+ idiom.  In order to avoid the overhead of taking a lock for every
+ read of a once-written shared variable, programmers typically
+ write</p>
+
+
+<pre>
+  SomeClass sharedThing;
+  
+  SomeClass getSharedThing() {
+     if (sharedThing == null)
+         synchronized (this) {
+            if (sharedThing == null) {
+               sharedThing = initialValue();
+               /* I'm feeling unlucky. */
+            }
+         }
+     return sharedThing;
+  }
+</pre>
+
+
+<p>This code is broken, because the memory model declares that
+sharedThing must be volatile.  As written, thread A could initialize
+sharedThing, pause at the unlucky point, and thread B could read
+sharedThing before A exited its synchronized block.  Other writes
+associated with the initialValue may not yet have been flushed to
+memory, and thread B could observe that inconsistent state.  Such a
+bug is rare, but possible.
+</p>
+
+
+
+<p>
+Without a memory model, such code is not even wrong.  Adding a memory
+model to an existing language is better than not, but it takes time to
+check and correct legacy code and legacy brains.  Even now,
+experienced Java programmers are still writing double-checked locking
+without the required volatile declarations.
+</p>
+
+
+
+<h4>Fewer side-effects</h4>
+
+
+
+<p>Current popular languages encourage side-effects, which interfere
+with parallelism.  For example, the Java Collections API is widely
+used, and filled with side-effecting operations in its interfaces.
+Java permits the use of final fields to indicate immutability, but the
+default choice is a field that can change.  These are the wrong
+choices for multicore computing.  By default, object fields should be
+immutable, and any standard library should offer <a
+href="http://www.amazon.com/exec/obidos/tg/detail/-/0521663504/">applicative
+and immutable data structures</a> as a first choice.</p>
+
+
+<p>Interestingly enough, when we replaced some mutable internal data
+ structures in the Fortress interpreter with their applicative
+ equivalents, not only did we get the multiprocessor scaling that we
+ had hoped for, but the interpreter also ran 20% faster on a
+ uniprocessor laptop.</p>
+
+
+
+<h4>Less locking</h4>
+
+
+<p>Today's programming languages provide only locks, if that, for
+ managing concurrent side-effects.  Programmmers working with locks
+ often use them incorrectly; either too often, harming performance, or
+ too little, harming correctness.  Skilled programmers can slip up and
+ accidentally write code that deadlocks on unlucky days.  In all
+ cases, the problem can lie hidden until parallelism is cranked up to
+ a sufficient level because both race conditions and lock contention
+ tend to scale quadratically with the number of threads.</p>
+
+
+<p>
+<a
+ href="http://www.cag.lcs.mit.edu/barc2003/herlihy.ppt">Transactions</a>
+ offer a better choice here; they don't deadlock, and in many cases
+ allow a lightweight implementation.  One particular advantage is that
+ they allow concurrency when it is possible, where locks (under
+ explicit programmer control) do not.
+</p>
+
+
+
+<h4>Garbage collection</h4>
+
+
+<p>
+Manually managing memory in a parallel world is difficult; effective
+use of multicore chips by ordinary programmers will require automatic
+memory management.  Garbage collection simplifies both run-of-the-mill
+concurrent programming and the implementation of <a
+href="http://research.sun.com/techrep/2005/smli_tr-2005-144.pdf">specialized
+concurrent algorithms</a>.
+</p>
+
+
+
+<i>Printable versions of links</i>
+
+<p>Cilk: An Efficient Multithreaded Runtime System: <a
+href="http://www.lcs.mit.edu/publications/pubs/pdf/MIT-LCS-TM-548.pdf">http://www.lcs.mit.edu/publications/pubs/pdf/MIT-LCS-TM-548.pdf</a><br>
+Threads Cannot be Implemented as a Library: <a
+href="http://www.hpl.hp.com/techreports/2004/HPL-2004-209.html">http://www.hpl.hp.com/techreports/2004/HPL-2004-209.html</a><br>
+Bill Pugh's Java Memory Model page: <a
+href="http://www.cs.umd.edu/~pugh/java/memoryModel/">http://www.cs.umd.edu/~pugh/java/memoryModel/</a><br>
+Purely Functional Data Structures by Chris Okasaki: <a
+href="http://www.amazon.com/exec/obidos/tg/detail/-/0521663504/">http://www.amazon.com/exec/obidos/tg/detail/-/0521663504/</a><br>
+The Transactional Manifesto (Maurice Herlihy): <a
+href="http://www.cag.lcs.mit.edu/barc2003/herlihy.ppt">http://www.cag.lcs.mit.edu/barc2003/herlihy.ppt</a><br>
+Dynamic Circular Work-Stealing Deque (a "simple" algorithm with
+complex resource management): <a
+href="http://research.sun.com/techrep/2005/smli_tr-2005-144.pdf">http://research.sun.com/techrep/2005/smli_tr-2005-144.pdf</a></p>
+
+<br><br>
+<a name="Lee">
+<hr width=95% size=2 align=left noshade>
+<h3>Position Statement: Edward A. Lee</h3>
+<hr width=95% size=1 align=left noshade>
+
+<p>It is widely acknowledged that concurrent programming is
+difficult. Yet multicore architectures make concurrent programming
+essential. If we understand why concurrent programming is so
+difficult, we have a better chance of solving the problem. Sutter and
+Larus observe [17]</p>
+
+<BLOCKQUOTE><p>"humans are quickly overwhelmed by concurrency and find
+it much more difficult to reason about concurrent than sequential
+code. Even careful people miss possible interleavings among even
+simple collections of partially ordered operations."</p></BLOCKQUOTE>
+
+<p>Yet humans are actually quite adept at reasoning about concurrent
+systems. The physical world is highly concurrent, and our very
+survival depends on our ability to reason about concurrent physical
+dynamics. The problem is that we have chosen concurrent abstractions
+that do not even vaguely resemble the concurrency of the physical
+world. We have become so used to these computational abstractions that
+we have lost track of the fact that they are not immutable. I argue
+that the difficulty of concurrent programming is a consequence of the
+abstractions, and that if we are willing to let go of those
+abstractions, then the problem will be fixable.</p>
+
+<p>New abstractions for computing would seem to imply a need for new
+programming languages.  However, this is not necessarily the case. I
+will argue that concurrency models can operate at the level of
+component architectures rather than programming languages. Indeed, if
+we augment object-oriented component models with intrinsic
+concurrency, very attractive programming models emerge. The models
+leverage existing languages and imperative reasoning about algorithms,
+and introduce concurrency via coordination of components rather than
+through modifications in the languages.</p>
+
+<p>In general-purpose software engineering practice, one approach to
+concurrent programming dominates all others, namely, threads. Threads
+are sequential processes that share memory. They represent a key
+concurrency model supported by modern computers, programming
+languages, and operating systems. Many general-purpose parallel
+architectures in use today are direct hardware realizations of the
+thread abstraction.</p>
+
+<p>Some applications can very effectively use threads. So-called
+"embarrassingly parallel" applications (for example, applications that
+essentially spawn multiple independent processes such as build tools,
+like PVM gmake, or web servers). Because of the independence of these
+applications, programming is relatively easy, and the abstraction
+being used is more like processes than threads (where memory is not
+shared). Where such applications do share data, they do so through
+database abstractions, which manage concurrency through such
+mechanisms as transactions. However, client-side applications are not
+so simple.</p>
+
+<p>Of course, threads are not the only possibility for concurrent
+programming. In scientific computing, where performance requirements
+have long demanded concurrent programming, data parallel language
+extensions and message passing libraries (like PVM [8], MPI [14], and
+<a href="http://www.openmp.org">OpenMP</a>) dominate over threads for
+concurrent programming. In fact, computer architectures intended for
+scientific computing often differ significantly from so-called
+"general purpose" architectures. They commonly support vectors and
+streams in hardware, for example. However, even in this domain,
+concurrent programs remain tedious to write. C and FORTRAN dominate,
+despite a long history of much better data parallel languages.</p>
+
+<p>In distributed computing, threads are often not a practical
+abstraction because creating the illusion of shared memory is often
+too costly. Even so, we have gone to considerable lengths to create
+distributed computing mechanisms that emulate multithreaded
+programming. CORBA and .NET, for example, are rooted in distributed
+object-oriented techniques, where software components interact with
+proxies that behave as if they were local objects with shared
+memory. Object-orientation's data abstraction limits the extent to
+which the illusion of shared memory needs to be preserved, so such
+techniques prove reasonably cost effective. They make distributed
+programming look much like multithreaded programming.</p>
+
+<p>I have argued in [12] that nontrivial multithreaded programs are
+incomprehensible. The root of the problem is their wildly
+nondeterministic behavior due to arbitrary interleaving of atomic
+actions. I will argue that we must (and can) build concurrent models
+of computation that are far more deterministic, and that we must
+judiciously and carefully introduce nondeterminism only where
+needed. Threads take the opposite approach. They make programs
+absurdly nondeterministic, and rely on programming style to constrain
+that nondeterminism to achieve deterministic aims.
+</p>
+
+<p>There are, of course, successful methods that greatly improve the
+usability of threads. Object-oriented design, for example, limits the
+visibility of data in software architectures, thereby limiting the
+effects of arbitrary interleaving. Transactions, which give
+programmers control over the granularity of atomic actions, also help
+enormously. Concurrent design patterns, like MapReduce [6], and
+libraries of concurrent data structures, like those in Java 5.0 and
+STAPL [2], also help enormously.  Language extensions can also help
+considerably, as for example in Split-C [5], Cilk [4], and Guava
+[3]. These language changes prune away considerable nondeterminacy
+without sacrificing much performance. More aggressive innovations,
+like <a href="http://www.erights.org">promises</a> or futures [9]
+offer significantly different programming models, and may in fact
+catch on. Formal checkers, as for example in Blast [10] and the <a
+href="http://developer.intel.com/software/products/threading/tcwin">Intel
+thread checker</a>, can help considerably by revealing program
+behaviors that are difficult for a human to spot. Less formal
+techniques, such as performance debuggers like <a
+href="http://valgrind.org">Valgrind</a>, can also help in a similar
+way, making it easier for programmers to sort through the vast
+nondeterminacy of program behaviors.</p>
+
+<p>While all of these techniques hold promise, I argue here for a
+different approach. I believe that the problem can be addressed by
+simply focusing on component architectures. Component architecture
+have become dominated by a particular view of object-oriented design
+as realized in C++, C#, and Java. This view is intrinsically
+imperative, where interactions between components are via call-return
+semantics, and threads and concurrency are not directly part of the
+component model. What flows through components is sequential
+control. An alternative model, where data flows through components
+(rather than control), has been called "actor-oriented" [13, 11,
+1]. Such models can take many forms. Unix pipes offer an early form of
+actor-oriented design, and in fact were a very common concurrent
+programming model before threads emerged into the programmer's
+vernacular.</p>
+
+<p>While actor-oriented design can be accomplished with new
+programming languages that replace imperative models, this is probably
+neither advisable nor necessary. I believe that the right answer is
+coordination languages. Coordination languages may introduce new
+syntax, but that syntax serves purposes that are orthogonal to those
+of established programming languages. Whereas a general-purpose
+concurrent language has to include syntax for mundane operations such
+as arithmetic expressions, a coordination language need not specify
+anything more than coordination. Given this, the syntax can be
+noticeably distinct. Coordination languages have been around for some
+time [15], and have failed to take root. One reason for this is that
+their acceptance amounts to capitulation on one key front:
+homogeneity. A prevailing undercurrent in programming languages
+research is that any worthy programming language must be general
+purpose. It must be, at a minimum, sufficiently expressive to express
+its own compiler. And then, adherents to the language are viewed as
+traitors if they succumb to the use of another language. Language wars
+are religious wars, and few of these religions are polytheistic.</p>
+
+<p>A key development, however, has broken the ice. UML, which is
+properly viewed as a family of languages, each with a visual syntax,
+is routinely combined with C++ and Java. Programmers are starting to
+get used to using more than one language, where complementary features
+are provided by the disjoint languages. There are many challenges on
+this path. Designing good coordination languages is no easier than
+designing good general-purpose languages, and is full of pitfalls. And
+of course, coordination languages need to develop scalability and
+modularity features analogous to those in established languages. This
+can be done. Our own Ptolemy II [7], for example, provides a
+sophisticated, modern type system at the coordination language level
+[18], and offers a preliminary form of inheritance and polymorphism
+that is adapted from object-oriented techniques [13]. A huge
+opportunity exists in adapting the concept of higher-order functions
+from functional languages to coordination languages to offer
+constructs like MapReduce at the coordination language level.  Some
+very promising early work in this direction is given by Reekie
+[16].</p>
+
+<p>Concurrency in software is difficult. However, much of this
+difficulty is a consequence of the abstractions for concurrency that
+we have chosen to use. The dominant one in use today for
+general-purpose computing is threads. But non-trivial multi-threaded
+programs are incomprehensible to humans. It is true that the
+programming model can be improved through the use of design patterns,
+better granularity of atomicity (e.g. transactions), improved
+languages, and formal methods.  However, these techniques merely chip
+away at the unnecessarily enormous nondeterminism of the threading
+model. The model remains intrinsically intractable.</p>
+
+<p>If we expect concurrent programming to be mainstream, and if we
+demand reliability and predictability from programs, then we must
+discard threads as a programming model. Concurrent programming models
+can be constructed that are much more predictable and understandable
+than threads. Threads must be relegated to the engine room of
+computing, to be suffered only by expert technology providers.</p>
+
+<h4>Acknowledgements</h4>
+
+<p>I would like to acknowledge thought-provoking comments and
+suggestions from Joe Buck (Synopsys), Mike Burrows (Google), Stephen
+Edwards (Columbia), Jim Larus (Microsoft), and Sandeep Shukla
+(Virginia Tech).</p>
+
+<h4>References</h4>
+
+<p>[1] G. Agha. ACTORS: A Model of Concurrent Computation in
+Distributed Systems. The MIT Press Series in Artificial
+Intelligence. MIT Press, Cambridge, MA, 1986.</p>
+<p>[2] P. An, A. Jula, S. Rus, S. Saunders, T. Smith, G. Tanase,
+N. Thomas, N. Amato, and L. Rauchwerger.  STAPL: An adaptive, generic
+parallel C++ library. In Wkshp. on Lang. and Comp. for Par. Comp.
+(LCPC), pages 193-208, Cumberland Falls, Kentucky, 2001.</p>
+<p>[3] D. F. Bacon, R. E. Strom, and A. Tarafdar. Guava: a dialect of
+Java without data races. In ACM SIGPLAN conference on Object-oriented
+programming, systems, languages, and applications, volume 35 of ACM
+SIGPLAN Notices, pages 382-400, 2000.</p>
+<p>[4] R. D. Blumofe, C. F. Joerg, B. C. Kuszmaul, C. E. Leiserson,
+K. H. Randall, and Y. Zhou. Cilk: an efficient multithreaded runtime
+system. In ACM SIGPLAN symposium on Principles and Practice of
+Parallel Programming (PPoPP), ACM SIGPLAN Notices, 1995.</p>
+<p>[5] D. E. Culler, A. Dusseau, S. C. Goldstein, A. Krishnamurthy,
+S. Lumetta, T. v. Eicken, and K. Yelick.  Parallel programming in
+Split-C. In Supercomputing, Portland, OR, 1993.</p>
+<p>[6] J. Dean and S. Ghemawat. MapReduce: Simplified data processing
+on large clusters. In Sixth Symposium on Operating System Design and
+Implementation (OSDI), San Francisco, CA, 2004.</p>
+<p>[7] J. Eker, J. W. Janneck, E. A. Lee, J. Liu, X. Liu, J. Ludvig,
+S. Neuendorffer, S. Sachs, and Y. Xiong.  Taming heterogeneity - the
+Ptolemy approach. Proceedings of the IEEE, 91(2), 2003.</p>
+<p>[8] A. Geist, A. Beguelin, J. Dongarra, W. Jiang, B. Manchek, and
+V. Sunderam. PVM: Parallel Virtual Machine - A Users Guide and
+Tutorial for Network Parallel Computing. MIT Press, Cambridge, MA,
+1994.</p>
+<p>[9] J. Henry G. Baker and C. Hewitt. The incremental garbage
+collection of processes. In Proceedings of the Symposium on AI and
+Programming Languages, volume 12 of ACM SIGPLAN Notices, pages 55-59,
+1977.</p>
+<p>[10] T. A. Henzinger, R. Jhala, R. Majumdar, and
+S. Qadeer. Thread-modular abstraction refinement. In 15th
+International Conference on Computer-Aided Verification (CAV), volume
+2725 of Lecture Notes in Computer Science, pages
+262-274. Springer-Verlag, 2003.</p>
+<p>[11] C. Hewitt. Viewing control structures as patterns of passing
+messages. Journal of Artifical Intelligence, 8(3):323363, 1977.</p>
+<p>[12] E. A. Lee. The problem with threads. Computer, 39(5):33-42, 2006.</p>
+<p>[13] E. A. Lee and S. Neuendorffer. Classes and subclasses in
+actor-oriented design. In Conference on Formal Methods and Models for
+Codesign (MEMOCODE), San Diego, CA, USA, 2004.</p>
+<p>[14] Message Passing Interface Forum. MPI2: A message passing
+interface standard. International Journal of High Performance
+Computing Applications, 12(1-2):1-299, 1998.</p>
+<p>[15] G. Papadopoulos and F. Arbab. Coordination models and
+languages. In M. Zelkowitz, editor, Advances in Computers - The
+Engineering of Large Systems, volume 46, pages 329-400. Academic
+Press, 1998.</p>
+<p>[16] H. J. Reekie. Toward effective programming for parallel
+digital signal processing. Ph.D. Thesis Research Report 92.1,
+University of Technology, Sydney, 1992.</p>
+<p>[17] H. Sutter and J. Larus. Software and the concurrency
+revolution. ACM Queue, 3(7), 2005.</p>
+<p>[18] Y. Xiong. An extensible type system for component-based
+design. Ph.D. Thesis Technical Memorandum UCB/ERL M02/13, University
+of California, Berkeley, CA 94720, May 1 2002.</p>
+
+
+</body>
+
+</html>

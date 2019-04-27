@@ -1,0 +1,122 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" href="../style.css"> 
+
+<title>CGO-2007 Keynotes</title>
+</head>
+
+<body>
+
+<h2>CGO 2007 Keynotes</h2>
+
+<a name="Buck">
+<h3>GPU Computing: Programming a Massively Parallel Processor</h3>
+
+Ian Buck, NVIDIA, GPU-Compute Software Manager<br/>
+
+Session Chair: Christos Kozyrakis, Stanford<br/>
+
+<a href="../presentations/cgo2007-keynote-buck.pdf"
+target="_top">Slides in pdf</a><br/>
+
+<p>Many researchers have observed that general purpose computing with
+programmable graphics hardware (GPUs) has shown promise to solve many
+of the world's compute intensive problems, many orders of magnitude
+faster the conventional CPUs. The challenge has been working within
+the constraints of a graphics programming environment and limited
+language support to leverage this huge performance potential. GPU
+computing with CUDA is a new approach to computing where hundreds of
+on-chip processor cores simultaneously communicate and cooperate to
+solve complex computing problems, transforming the GPU into a
+massively parallel processor. The NVIDIA C-compiler for the GPU
+provides a complete development environment that gives developers the
+tools they need to solve new problems in computation-intensive
+applications such as product design, data analysis, technical
+computing, and game physics. In this talk, I will provide a
+description of how CUDA can solve compute intensive problems and
+highlight the challenges when compiling parallel programs for GPUs
+including the differences between graphics shaders vs. CUDA
+applications.</p>
+
+
+<p>Ian Buck is the software manager of the GPU-Compute effort at
+NVIDIA which includes the CUDA software development kit.  Dr. Buck
+received his Ph.D. in Computer Science from Stanford University where
+his thesis work, titled "Stream Computing on Graphics Hardware,"
+researched programming models and computing strategies for using
+graphics hardware as a general purpose computing platform. His work
+included developing the Brook programming platform for abstracting the
+GPU as a general purpose streaming coprocessor.  He has written
+multiple articles on the topics of GPGPU and GPU Computing as well as
+contributed to tutorials and workshops at SIGGRAPH, Supercomputing,
+and IEEE Visualization on the topic of GPGPU.  Dr. Buck holds a BSE
+degree from Princeton University.</p>
+
+
+<a name="Fang">
+<h3>Parallel Programming Environment: A Key to Translating Tera-Scale
+Platforms into a Big Success</h3>
+
+Jesse Fang, Intel, Director of Programming Systems Lab<br/>
+
+Session Chair: Ali Adl-Tabatabai, Intel<br/>
+
+<p>Moore's Law will continue to increase the number of transistors on
+die for a couple of decades, as silicon technology moves from 65nm
+today to 45nm, 32 nm and 22nm in the future. Since the power and
+thermal constraints increase with frequency, multi-core or many-core
+will be the way of the future microprocessor. In the near future, HW
+platforms will have many-cores (&gt;16 cores) on die to achieve &gt;1
+TIPs computation power, which will communicate each other through an
+on-die interconnect fabric with &gt;1 TB/s on-die bandwidth and &lt;30
+cycles latency. Off-die D-cache will employ 3D stacked memory
+technology to tremendously increase off-die cache/memory bandwidth and
+reduce the latency.  Fast copper flex cables will link CPU-DRAM on
+socket and the optical silicon photonics will provide up to 1 Tb/s I/O
+bandwidth between boxes. The HW system with TIPs of compute power
+operating in Tera-bytes of data make this a "Tera-scale"
+platform. What are the SW implications with the HW changes from
+uniprocessor to Tera-scale platform with many-cores as "the way of the
+future?"  It will be great challenge for programming environments to
+help programmers to develop concurrent code for most client
+software. A good concurrent programming environment should extend the
+existing programming languages that typical programmers are familiar
+with, and bring benefits for concurrent programming. There are lots of
+research topics. Examples of these topics include flexible parallel
+programming models based on needs from applications, better
+synchronization mechanisms like Transactional Memory to replace simple
+"Thread + Lock" structure, nested data parallel language primitives
+with new protocols, fine-grained synchronization mechanisms with HW
+support, maybe fine-grained message passing, advanced compiler
+optimizations for the threaded code, and SW tools in the concurrent
+programming environment. A more interesting problem is how to use such
+a many-core system to improve single-threaded performance.</p>
+
+<p>Jesse Fang is Director and Chief Scientist of Programming System
+Lab at Intel/CTG (Corp. Technology Group). Jesse created the lab about
+11 years ago, and has been leading the lab to develop programming
+environment technologies to enable Intel HW uArch research and
+microprocessor design, and to transfer SW technologies to Intel\u2019s
+Software Solution Group. Before joining Intel in 1995, Jesse was
+manager of Hewlett-Packet Research Lab compiler team that initiated
+the Itanium Architecture in 1991. Jesse ran a small start-up between
+working at HP and Intel. Before HP Labs, Jesse was working as manager
+or technical leader on parallel/vector compilers at Convex and
+Concurrent Computer Corporation, Respectively, in 1989 and 1986. Jesse
+Fang got his Ph.D. in Computer Science at University of
+Nebraska-Lincoln before he did a post-Doctorate at University of
+Illinois Urbana-Champaign. He was Assistant Professor at Wichita State
+University at Kansas before moving to industry. Jesse got his B.S. in
+Math at Fudan University in Shanghai.</p>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-238213-4";
+urchinTracker();
+</script>
+
+</body>
+
+</html>

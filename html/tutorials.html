@@ -1,0 +1,280 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+<link rel="stylesheet" href="../style.css"> 
+
+<title>CGO-2007 Tutorials</title>
+</head>
+
+<body>
+
+<h2>CGO 2007 Workshops and Tutorials</h2>
+ 
+<h3>Workshops</h3>
+
+<ul>
+
+<li>ODES: <a
+href="http://www.ece.vill.edu/~deepu/odes/odes.html" target="_top">5th
+Workshop on Optimizations for DSP and Embedded Systems</a></li>
+
+<li>STMCS: <a href="http://www.isi.edu/~mhall/stmcs07" target="_top">Second Workshop
+on Software Tools for Multi-Core Systems</a></li>
+
+<li>EPIC-6: <a href="http://rogue.colorado.edu/EPIC6" target="_top">Workshop on
+EPIC Architectures and Compiler Technology</a></li>
+
+<li><a href="tutorials.html#Data:Parallel:Programming">Workshop on Data-Parallel
+Programming Models for Many-Core Architectures</a></li>
+
+</ul>
+
+
+
+<h3>Tutorials</h3>
+
+<ul>
+
+<li><a href="http://research.microsoft.com/phoenix/phx_cgo2007.aspx"
+target="_top">Practical Phoenix: A Hands-On Tutorial</a></li>
+
+<li><a href="tutorials.html#GCC:Internals">GCC Internals</a></li>
+
+<li><a href="tutorials.html#Open64">Open64, the open source high performance compiler for Servers,
+Embedded Systems and Compiler/Architecture Research</a></li>
+
+</ul>
+
+<h3>Schedule</h3>
+
+
+<p>All workshops and tutorials will take place on <b>March 11,
+2007</b> according to the table below. Lunch is included for all
+tutorial/workshop attendees. <b>Note that in the US, this is the start
+day of the Daylight Savings Time, so do not forget to adjust your
+clocks in the morning!</b></p>
+
+<br/>
+
+<center><table border="4">
+
+<th>Theme</th>
+<th width="0"></th>
+<th>Morning (8:00-12:00)</th>
+<th>Afternoon (1:30-6:00)</th>
+
+<tr>
+
+ <td>DSP/Embedded systems</td>
+
+ <td></td>
+
+ <td colspan="2"><a
+ href="http://www.ece.vill.edu/~deepu/odes/odes.html"
+ target="_top">ODES: 5th workshop on optimizations for DSP and
+ embedded systems</a></td>
+
+</tr>
+
+
+
+<tr>
+
+ <td>Multi/many-core</td>
+
+ <td></td>
+
+ <td><a href="http://groups.google.com/group/dataparallel"
+target="_top">Data-parallel programming models for many-core
+architectures workshop</a></td>
+
+ <td><a href="http://www.isi.edu/~mhall/stmcs07"
+ target="_top">Software tools for multi-core systems workshop</a></td>
+
+</tr>
+
+<tr>
+
+ <td>Instruction-level parallelism</td>
+
+ <td></td>
+
+ <td>Open64 Compiler tutorial</td>
+
+ <td><a href="http://rogue.colorado.edu/EPIC6" target="_top">EPIC-6
+ workshop (explicitly parallel instruction computing)</a></td>
+
+</tr>
+
+<tr>
+
+ <td>Compiler tutorials</td>
+ <td></td>
+ <td>GCC compiler tutorial</td>
+
+ <td><a href="http://research.microsoft.com/phoenix/phx_cgo2007.aspx"
+target="_top">Practical Phoenix: A Hands-On Tutorial</a></td>
+
+</tr>
+
+</table></center>
+
+<br/>
+
+<h3>Descriptions</h3>
+
+<a name="GCC:Internals">
+<h4>GCC Internals<br/>
+Organizer: Diego Novillo (Red Hat Canada)</h4>
+
+<p>The GNU Compiler Collection (GCC) is one of the most popular compilers
+available today, yet its internal infrastructure remains relatively
+unknown outside the immediate developer community.</p>
+
+<p>Over the last few years we have made significant improvements to its
+internal architecture, resulting in a more modular compiler that
+incorporates many of the most recent optimization technology.  In this
+tutorial, I will provide a roadmap to the internal workings of GCC
+that should help compiler implementors modify and enhance GCC to cater
+their needs.</p>
+
+<p>The tutorial will provide a detailed description of all the major
+components in GCC (intermediate representations, SSA forms used, alias
+analysis, OpenMP, pass manager, call graph manager, structure of
+passes, etc).  The aim is to provide enough information for
+implementors to be able to modify GCC efficiently.</p>
+
+
+
+
+<a name="Data:Parallel:Programming">
+<h4>Data-Parallel Programming Models for Many-Core Architectures<br/>
+Organizers: Anwar Ghuloum (Intel) and Matthew Papakipos (PeakStream)</h4>
+
+
+<p>Parallel architectures have proliferated to the desktop through
+multi-core CPUs and GPUs. As power constraints drive semiconductor
+manufacturers to increase levels of software-exposed parallelism in
+their products, developing software for these platforms becomes more
+and more challenging. Automatic parallelization of programs written in
+mainstream languages such as C remains in the realm of research, while
+manual parallel programming using such languages is fraught with
+difficulties. For example, debugging non-deterministic race conditions
+in multi-threaded code is exceedingly difficult. Additionally, tuning
+performance of parallel programs requires unprecedented knowledge and
+understanding of architectural and micro-architectural details. These
+issues have created an enormous programmer productivity problem.</p>
+
+<p>Data-parallel programming models are emerging as an extremely
+attractive model for parallel programming, driven by several factors.
+Through deterministic semantics and constrained synchronization
+mechanisms, they provide race-free parallel-programming
+semantics. Furthermore, data-parallel programming models free
+programmers from reasoning about the details of the underlying
+hardware and software mechanisms for achieving parallel execution and
+facilitate effective compilation.  Finally, efforts in the GPGPU
+movement and elsewhere have matured implementation technologies for
+streaming and data-parallel programming models to the point where high
+performance can be reliably achieved.</p>
+
+<p>This workshop aims to gather commercial and academic researchers,
+vendors, and users of data-parallel programming platforms to discuss
+implementation experience for a broad range of many-core architectures
+and to speculate on future programming-model directions.</p>
+
+<p>This inaugural workshop's talks will be largely invited, though
+attendance will be open.</p>
+
+<p>More information including slides and a discussion board is at this
+<a href="http://groups.google.com/group/dataparallel"
+target="_top">Google Group</a>.
+
+<a name="Open64">
+<h4>Open64: the Open-Source High-Performance Compiler for Servers,
+Embedded Systems and Compiler/Architecture Research<br/> Organizers:
+Shin-Ming Liu (HP), Pen-Chung Yew (University of Minnesota), Sun Chan
+(Simplight Nanoelectronics), Shengyuan Wang (Tsinghua University),
+Yuan Dong (Tsinghua University)</h4>
+
+<p>Open64 was originally developed by SGI and released as the MIPSpro
+compiler.  It has been well-recognized as an industrial-strength
+production compiler for high-performance computing.  It includes
+advanced interprocedural optimizations, loop nest optimizations,
+global scalar optimizations, and code generation with advanced global
+register allocation and software pipelining.  It was open-sourced in
+2000 after it was retargeted to the Itanium processor.</p>
+
+<p>There have been a number of subsequent branches and improvements to
+the compiler since then.  Intel adopted the Open64 compiler for
+compiler-related research and subsequently released it as the Open
+Research Compiler (ORC) starting Jan 2002.  During this time, Intel
+drove ORC to outstanding performance and functionality and released
+ORC 2.1 in the summer of 2003. Later, Pathscale (acquired by Qlogic in
+early 2006) released a branch of Open64 for the AMD Opteron processor
+in 2004, bringing the high performance open source compiler to x86-64
+developer community.  HP has sponsored the Open64 Compiler project for
+Itanium since November 2005 following the path of ORC for compiler
+research with additional focus on quality and upgrading C++ language
+support to stay close to the GCC front end evolution.  Open64 has been
+ported to different architectures and this tutorial will present the
+work and results on them.</p>
+
+<h5>Proposed Tutorial Agenda</h5>
+
+<ul>
+
+<li>Open64 state of affairs: High performance computing performance of
+Open64
+
+<ul>
+
+<li>The HP Osprey Project
+
+<li>The PathScale EKO Compiler
+
+<li>Functionality
+
+<li>Performance on Itanium and X86
+
+<li>Upcoming new features
+
+</ul>
+
+<li>Research activities in Open64
+
+<ul>
+
+<li>Motivation
+
+<li>Approach
+
+<li>Application
+
+</ul>
+
+<li>Retargeting Open64 to an embedded CPU
+
+<ul>
+
+<li>Architectural consideration and implications
+
+<li>Programming Model, ABI and code size considerations
+
+<li>Automatic retarget design and implementation
+
+<li>Optimizations and preliminary results 
+
+</ul>
+
+</ul>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-238213-4";
+urchinTracker();
+</script>
+
+</body>
+
+</html>
